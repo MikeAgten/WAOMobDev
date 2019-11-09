@@ -8,12 +8,6 @@
         android:angle="90">
 
     </gradient>
-
-    <stroke
-        android:width="4dp"
-        android:color="@color/colorBlack">
-
-    </stroke>
     <corners android:radius="100dp">
 
     </corners>
