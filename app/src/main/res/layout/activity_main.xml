@@ -26,7 +26,7 @@
         android:layout_marginTop="20dp"
         android:background="#BCB6B2"
         android:inputType="textPersonName"
-        android:maxLength="15"
+        android:maxLength="50"
         ></EditText>
 
     <TextView
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:background="#BCB6B2"
         android:inputType="textPersonName"
-        android:maxLength="15"
+        android:maxLength="30"
         ></EditText>
 
     <TextView

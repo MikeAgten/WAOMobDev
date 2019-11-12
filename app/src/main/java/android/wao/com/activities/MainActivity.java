@@ -1,5 +1,6 @@
 package android.wao.com.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +17,14 @@ import android.wao.com.R;
 import android.wao.com.adapters.RecyclerViewAdapter;
 import android.wao.com.data.StoresContract;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.api.LogDescriptor;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -48,18 +55,81 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void createUser(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email,password).
+                addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "createUserWithEmail: success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            //update the UI
+                        }else{
+                            Log.w(TAG,"CreateUSerWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this,"Authentication failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    public void signInUser(String email, String password){
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            // update the ui
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+
+                            // update the uit
+                        }
+
+                        // ...
+                    }
+                });
+
+    }
+
 
     public void loginButtonClick(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this, StoresListActivity.class);
-        Log.d(TAG, "onClick: CLICKED");
-        startActivity(intent);
+        EditText  user = (EditText) findViewById(R.id.userNameEditText);
+        String username = user.getText().toString();
+        EditText  pass = (EditText) findViewById(R.id.passwordNameEditText);
+        String password = pass.getText().toString();
+        signInUser(username,password);
+        if(mAuth.getCurrentUser() != null){
+            Intent intent = new Intent();
+            intent.setClass(this, StoresListActivity.class);
+            Log.d(TAG, "onClick: CLICKED");
+            startActivity(intent);
+        }
     }
 
     public void registerButtonClick(View view) {
+        //userNameTextView
+        EditText  user = (EditText) findViewById(R.id.userNameEditText);
+        String username = user.getText().toString();
+        EditText  pass = (EditText) findViewById(R.id.passwordNameEditText);
+        String password = pass.getText().toString();
+
+        createUser(username,password);
+
+
+       /*
         Intent intent = new Intent();
         intent.setClass(this, RegisterActivity.class);
         Log.d(TAG, "onClick: CLICKED");
         startActivity(intent);
+
+        */
     }
 }
