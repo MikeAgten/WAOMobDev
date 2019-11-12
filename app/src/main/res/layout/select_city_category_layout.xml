@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/wao_logo"></androidx.appcompat.widget.AppCompatImageView>
+
+    <Spinner
+        android:id="@+id/citySpinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_centerVertical="true"
+        android:spinnerMode="dropdown"/>
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_marginLeft="230dp"
+        android:spinnerMode="dropdown"/>
+
+    <ImageButton
+        android:id="@+id/mapButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignBottom="@id/categorySpinner"
+        android:onClick="mapButtonClick"
+        android:layout_marginBottom="-120dp"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/ic_action_name" />
+
+    <ImageButton
+        android:id="@+id/listButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="270dp"
+        android:onClick="listButtonClick"
+        android:layout_alignBottom="@id/citySpinner"
+        android:layout_marginBottom="-120dp"
+        android:src="@drawable/ic_action_name" />
+
+</RelativeLayout>
