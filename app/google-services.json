@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "806413992773",
+    "firebase_url": "https://named-flag-258616.firebaseio.com",
+    "project_id": "named-flag-258616",
+    "storage_bucket": "named-flag-258616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806413992773:android:7281affc69bc13c118b42c",
+        "android_client_info": {
+          "package_name": "android.wao.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806413992773-v6mepqda8tjltpuucq7h04e6bifiuufi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "android.wao.com",
+            "certificate_hash": "68e10d177e000636b70e5d86b41c8ff2b45d8194"
+          }
+        },
+        {
+          "client_id": "806413992773-co0e0o6l4k2cp1uhnlilgfk6oagjc6f9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-kTlwi4tRp3ciuHu0Hfxop35uDouJydQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806413992773-co0e0o6l4k2cp1uhnlilgfk6oagjc6f9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

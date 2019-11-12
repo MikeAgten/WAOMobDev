@@ -18,11 +18,15 @@ import android.wao.com.data.StoresContract;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,17 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main); // dit is de main scherm ik heb veranderd naar list voor test
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started");
+        mAuth = FirebaseAuth.getInstance();
+
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
 
     }
 

@@ -29,9 +29,9 @@ public class StoresListActivity extends AppCompatActivity {
         initImageBitMaps();
     }
 
-    public void mapButtonClick(View view) {
+    public void mapsButtonClick(View view) {
         Intent intent = new Intent();
-        intent.setClass(this, MapActivity.class);
+        intent.setClass(this, MapsActivity.class);
         Log.d(TAG, "onClick: CLICKED");
         startActivity(intent);
     }
@@ -55,4 +55,6 @@ public class StoresListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+
 }
