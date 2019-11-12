@@ -42,6 +42,7 @@
         </activity>
         <activity android:name=".activities.StoresListActivity" />
         <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.SelectCityCategoryActivity" />
     </application>
 
 </manifest>
