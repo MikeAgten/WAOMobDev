@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         signInUser(username,password);
         if(mAuth.getCurrentUser() != null){
             Intent intent = new Intent();
-            intent.setClass(this, StoresListActivity.class);
+            intent.setClass(this, SelectCityCategoryActivity.class);
             Log.d(TAG, "onClick: CLICKED");
             startActivity(intent);
         }
