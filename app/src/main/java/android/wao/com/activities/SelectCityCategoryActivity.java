@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.wao.com.Database.WaoDatabase;
 import android.wao.com.R;
 import android.wao.com.adapters.RecyclerViewAdapter;
+import android.wao.com.model.Shop;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -13,17 +15,67 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectCityCategoryActivity extends AppCompatActivity {
 
     private static final String TAG = "SelectCityCategoryActiv";
-
+    WaoDatabase db;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_city_category_layout);
         fillSpinners();
+
+        /*
+        db = Room.databaseBuilder(getApplicationContext(),
+                WaoDatabase.class, "database-name").build();
+        List<Shop> shopsdummy = fillDatabase();
+
+        for(int i=0; i< shopsdummy.size(); i++){
+            db.shopDAO().insertAll(shopsdummy.get(i));
+        }
+
+        List<Shop> shops = db.shopDAO().getAll();
+        for(int i=0; i< shops.size(); i++){
+            Log.d(TAG, shops.get(i).shopName);
+        }
+        */
     }
+
+    private List<Shop> fillDatabase(){
+        List<Shop> shopsDummy = new ArrayList<>();
+        Shop shop1 = new Shop();
+        shop1.shopName = "Zara";
+        shop1.typeBusiness = "clothing";
+        shop1.visitCounter = 1;
+
+        Shop shop2 = new Shop();
+        shop2.shopName = "Jack en Jones";
+        shop2.typeBusiness = "clothing";
+        shop2.visitCounter = 3;
+
+        Shop shop3 = new Shop();
+        shop3.shopName = "H en M";
+        shop3.typeBusiness = "clothing";
+        shop3.visitCounter= 5;
+
+        Shop shop4 = new Shop();
+        shop3.shopName = "Pizza hut";
+        shop3.typeBusiness = "Restaurant";
+        shop3.visitCounter= 5;
+
+        shopsDummy.add(shop1);
+        shopsDummy.add(shop2);
+        shopsDummy.add(shop3);
+        shopsDummy.add(shop4);
+     return shopsDummy;
+    }
+
+
 
 
     private void fillSpinners() {
