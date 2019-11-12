@@ -105,13 +105,19 @@ public class MainActivity extends AppCompatActivity {
         String username = user.getText().toString();
         EditText  pass = (EditText) findViewById(R.id.passwordNameEditText);
         String password = pass.getText().toString();
-        signInUser(username,password);
-        if(mAuth.getCurrentUser() != null){
-            Intent intent = new Intent();
-            intent.setClass(this, StoresListActivity.class);
-            Log.d(TAG, "onClick: CLICKED");
-            startActivity(intent);
+        if(username.isEmpty()  || password.isEmpty()){
+            Toast.makeText(MainActivity.this, "Fill in user credentials",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            signInUser(username,password);
+            if(mAuth.getCurrentUser() != null){
+                Intent intent = new Intent();
+                intent.setClass(this, StoresListActivity.class);
+                Log.d(TAG, "onClick: CLICKED");
+                startActivity(intent);
+            }
         }
+
     }
 
     public void registerButtonClick(View view) {
