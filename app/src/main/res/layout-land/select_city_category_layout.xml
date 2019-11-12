@@ -7,7 +7,7 @@
         android:id="@+id/logoImageView"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/wao_logo"></androidx.appcompat.widget.AppCompatImageView>
 
@@ -15,15 +15,22 @@
         android:id="@+id/citySpinner"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@android:drawable/btn_dropdown"
+        android:layout_below="@id/logoImageView"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="100dp"
         android:spinnerMode="dropdown"/>
 
     <Spinner
         android:id="@+id/categorySpinner"
         android:layout_width="200dp"
+        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_below="@id/logoImageView"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="100dp"
         android:background="@android:drawable/btn_dropdown"
         android:layout_marginLeft="230dp"
         android:spinnerMode="dropdown"/>
@@ -35,18 +42,18 @@
         android:layout_alignBottom="@id/categorySpinner"
         android:onClick="mapButtonClick"
         android:layout_marginBottom="-120dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="200dp"
         android:src="@drawable/ic_action_name" />
 
     <Button
         android:id="@+id/listButton"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="270dp"
+        android:layout_marginRight="200dp"
+        android:layout_alignParentRight="true"
         android:onClick="listButtonClick"
         android:layout_alignBottom="@id/citySpinner"
         android:layout_marginBottom="-120dp"
-        android:src="@drawable/ic_action_name"
         android:text="List"
         />
 

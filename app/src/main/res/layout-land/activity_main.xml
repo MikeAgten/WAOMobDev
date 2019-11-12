@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/registerButton"
+        android:layout_centerVertical="true"
+        android:src="@drawable/wao_logo"></androidx.appcompat.widget.AppCompatImageView>
+
+
+            <EditText
+                android:id="@+id/userNameEditText"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:ems="10"
+                android:layout_marginLeft="50dp"
+                android:layout_centerInParent="true"
+                android:background="#BCB6B2"
+                android:inputType="textPersonName"
+                android:maxLength="50"
+                ></EditText>
+
+            <TextView
+                android:id="@+id/userNameTextView"
+                android:layout_width="280dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentLeft="true"
+                android:textColor="#000"
+                android:text="Username" />
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="loginButtonClick"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button_default"
+            android:layout_toRightOf="@id/passwordNameEditText"
+            android:text="Login"
+            android:textColor="#F1E5E5" />
+        <EditText
+            android:id="@+id/passwordNameEditText"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/userNameEditText"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:background="#BCB6B2"
+            android:inputType="textPersonName"
+            android:maxLength="30"
+            ></EditText>
+
+        <TextView
+            android:id="@+id/passwordNameTextView"
+            android:layout_width="280dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/userNameEditText"
+            android:layout_marginTop="20dp"
+            android:textColor="#000"
+            android:text="Password" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/passwordNameTextView"
+            android:layout_below="@id/userNameEditText"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="registerButtonClick"
+            android:background="@drawable/button_default"
+            android:text="Register"
+            android:textColor="#F1E5E5" />
+</RelativeLayout>
