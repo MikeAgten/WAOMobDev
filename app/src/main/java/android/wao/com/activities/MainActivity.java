@@ -11,13 +11,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.wao.com.R;
 import android.wao.com.adapters.RecyclerViewAdapter;
 import android.wao.com.data.StoresContract;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -34,12 +37,17 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
+    private EditText userNameEditText;
+    private EditText passwordEditText;
+    private ImageButton seePasswordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main); // dit is de main scherm ik heb veranderd naar list voor test
         setContentView(R.layout.activity_main);
+        userNameEditText = findViewById(R.id.userNameEditText);
+        seePasswordButton = findViewById(R.id.seePasswordButton);
+        passwordEditText = findViewById(R.id.passwordNameEditText);
         Log.d(TAG, "onCreate: started");
         mAuth = FirebaseAuth.getInstance();
 
@@ -136,5 +144,26 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
         */
+    }
+
+    public void seePasswordButtonClick(View view) {
+        seePasswordButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println(" pressed ");
+                        passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                        passwordEditText.setSelection(passwordEditText.getText().length());
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        System.out.println(" released ");
+                        passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        passwordEditText.setSelection(passwordEditText.getText().length());
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 }
