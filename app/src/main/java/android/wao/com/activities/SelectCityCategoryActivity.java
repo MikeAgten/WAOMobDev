@@ -32,9 +32,8 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
 
         fillSpinners();
 
-        if(db.shopDAO().getAll() == null){
+        if(db.shopDAO().getAll().size() == 0){
             List<Shop> shopsdummy = fillDatabase();
-
 
             for(int i=0; i< shopsdummy.size(); i++){
                 db.shopDAO().insertAll(shopsdummy.get(i));
