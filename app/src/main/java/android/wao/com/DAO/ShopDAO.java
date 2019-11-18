@@ -24,6 +24,10 @@ public interface ShopDAO {
      @Query("Select visits from shop where name Is(:name)")
      int getAmountOfTimesVisited(String name);
 
+    @Query("UPDATE shop SET visits=:visit WHERE name = :name")
+    void update(int visit, String name);
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Shop shop);

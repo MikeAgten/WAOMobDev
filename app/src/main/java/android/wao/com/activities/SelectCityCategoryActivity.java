@@ -23,27 +23,27 @@ import java.util.List;
 public class SelectCityCategoryActivity extends AppCompatActivity {
 
     private static final String TAG = "SelectCityCategoryActiv";
-    WaoDatabase db;
+    WaoDatabase db = MainActivity.getDb();
+    Spinner citySpinner;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_city_category_layout);
+
         fillSpinners();
 
-        /*
-        db = Room.databaseBuilder(getApplicationContext(),
-                WaoDatabase.class, "database-name").build();
-        List<Shop> shopsdummy = fillDatabase();
+        if(db.shopDAO().getAll() == null){
+            List<Shop> shopsdummy = fillDatabase();
 
-        for(int i=0; i< shopsdummy.size(); i++){
-            db.shopDAO().insertAll(shopsdummy.get(i));
+
+            for(int i=0; i< shopsdummy.size(); i++){
+                db.shopDAO().insertAll(shopsdummy.get(i));
+            }
+        }else{
+            Log.d(TAG,"er zit al data in de database");
         }
 
-        List<Shop> shops = db.shopDAO().getAll();
-        for(int i=0; i< shops.size(); i++){
-            Log.d(TAG, shops.get(i).shopName);
-        }
-        */
+
     }
 
     private List<Shop> fillDatabase(){
@@ -64,9 +64,9 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop3.visitCounter= 5;
 
         Shop shop4 = new Shop();
-        shop3.shopName = "Pizza hut";
-        shop3.typeBusiness = "Restaurant";
-        shop3.visitCounter= 5;
+        shop4.shopName = "Pizza hut";
+        shop4.typeBusiness = "Restaurant";
+        shop4.visitCounter= 5;
 
         shopsDummy.add(shop1);
         shopsDummy.add(shop2);
@@ -79,7 +79,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
 
 
     private void fillSpinners() {
-        Spinner citySpinner = findViewById(R.id.citySpinner);
+        citySpinner = findViewById(R.id.citySpinner);
         //create a list of items for the spinner.
         String[] cities = new String[]{"Hasselt", "Genk", "Peer", "Antwerpen"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
@@ -101,6 +101,8 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
     public void mapButtonClick(View view){
         Intent intent = new Intent();
         intent.setClass(this, MapsActivity.class);
+        intent.putExtra("city",citySpinner.getSelectedItem().toString());
+        Log.d(TAG,citySpinner.getSelectedItem().toString());
         Log.d(TAG, "onClick: CLICKED");
         startActivity(intent);
     }

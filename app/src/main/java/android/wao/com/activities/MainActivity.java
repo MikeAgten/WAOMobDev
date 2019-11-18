@@ -2,36 +2,25 @@ package android.wao.com.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.wao.com.Database.WaoDatabase;
 import android.wao.com.R;
-import android.wao.com.adapters.RecyclerViewAdapter;
-import android.wao.com.data.StoresContract;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.api.LogDescriptor;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText userNameEditText;
     private EditText passwordEditText;
     private ImageButton seePasswordButton;
+    private static WaoDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +41,25 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordNameEditText);
         Log.d(TAG, "onCreate: started");
         mAuth = FirebaseAuth.getInstance();
+        db = Room.databaseBuilder(getApplicationContext(),
+                WaoDatabase.class, "WaoDB").allowMainThreadQueries().build();
+        Log.d(TAG, db.toString());
+        //checkIfDatabaseExists(db);
+
+    }
+
+    public static WaoDatabase getDb(){
+        return db;
+    }
+
+    public void checkIfDatabaseExists(WaoDatabase database){
+            if(database.isOpen()){
+                //alles in orde
+            }else{
+                db = Room.databaseBuilder(getApplicationContext(),
+                        WaoDatabase.class, "WaoDB").build();
+            }
+        //app/schemas has a json file with database info now
 
     }
 
