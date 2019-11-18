@@ -53,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
                 Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show(); // laat even zien waar je op klikte
                 int visits =  db.shopDAO().getAmountOfTimesVisited(mImageNames.get(position));
-                Log.d(TAG,"VOORDAT ER OP EEN WINKEL GEDRUKT IS: "+visits);
+                Log.d(TAG,"Voordat er een winkel gekozen is deze zoveel keer opgezocht: "+visits);
 
                // Toast.makeText(mContext, visits, Toast.LENGTH_SHORT).show(); // laat even zien waar je op klikte
                 db.shopDAO().update(visits+1,mImageNames.get(position));
