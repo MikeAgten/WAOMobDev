@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="appColor">#B31739</color>
     <color name="appEndColor">#E61F46</color>
+    <color name="popupColor">#F5F2D0</color>
     <color name="colorBlack">#141414</color>
     <color name="colorButtonClicked">#690202</color>
     <color name="colorButtonClickedEnd">#8B0303</color>

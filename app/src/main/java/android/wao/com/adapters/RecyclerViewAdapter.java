@@ -1,5 +1,6 @@
 package android.wao.com.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.wao.com.Database.WaoDatabase;
 import android.wao.com.R;
 import android.wao.com.activities.MainActivity;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
     private static final String TAG = "RecyclerViewAdapter";
     WaoDatabase db = MainActivity.getDb();
+    Dialog myDialog;
 
     private ArrayList<String> mImageNames = new ArrayList<>();
     private ArrayList<String> mImages = new ArrayList<>();
@@ -39,7 +42,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
+
+        /*viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "testclick on item", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
         return viewHolder;
+
     }
 
     @Override
@@ -47,6 +59,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
 
         holder.imageName.setText(mImageNames.get(position));
+
+        myDialog = new Dialog(mContext);
+        myDialog.setContentView(R.layout.stores_popup_layout);
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +74,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                // Toast.makeText(mContext, visits, Toast.LENGTH_SHORT).show(); // laat even zien waar je op klikte
                 db.shopDAO().update(visits+1,mImageNames.get(position));
                 Log.d(TAG,"Nadat er een winkel gekozen is: "+ db.shopDAO().getShopByName(mImageNames.get(position)).visitCounter);
+
+                myDialog.show();
             }
         });
     }
@@ -69,6 +87,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        private LinearLayout store_popup;
         ImageView imageView;
         TextView imageName;
         RelativeLayout parentLayout;
@@ -77,6 +96,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imageView = itemView.findViewById(R.id.image);
             imageName = itemView.findViewById(R.id.imageName);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+            store_popup = (LinearLayout) itemView.findViewById(R.id.popup_layout);
 
         }
     }
