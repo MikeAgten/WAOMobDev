@@ -2,6 +2,8 @@ package android.wao.com.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
@@ -62,6 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         myDialog = new Dialog(mContext);
         myDialog.setContentView(R.layout.stores_popup_layout);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +96,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RelativeLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image);
-            imageName = itemView.findViewById(R.id.imageName);
+            imageView = itemView.findViewById(R.id.logoImage);
+            imageName = itemView.findViewById(R.id.storeNameTextview);
             parentLayout = itemView.findViewById(R.id.parent_layout);
             store_popup = (LinearLayout) itemView.findViewById(R.id.popup_layout);
 

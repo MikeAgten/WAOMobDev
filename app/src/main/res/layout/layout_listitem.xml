@@ -1,26 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:id="@+id/parent_layout">
+    android:padding="5dp"
+    android:id="@+id/parent_layout"
+    android:background="@color/popupColor">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/redbackground_blackborder">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:id="@+id/image"
+        android:id="@+id/logoImage"
         android:src="@mipmap/ic_launcher"
+        android:background="@drawable/background_popup"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageName"
-        android:text="een winkel naam"
-        android:layout_toRightOf="@id/image"
-        android:textColor="#000"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:textSize="17sp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/storeNameTextview"
+            android:text="een winkel naam"
+            android:layout_toRightOf="@id/logoImage"
+            android:textColor="#000"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textSize="17sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/OpeningTodayTextview"
+            android:text="Vandaag 9:30-18:00"
+            android:layout_toRightOf="@id/logoImage"
+            android:drawableLeft="@drawable/clock_black"
+            android:textColor="#000"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textSize="17sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/distanceTextview"
+            android:text="1.6 km"
+            android:drawableLeft="@drawable/marker_black"
+            android:layout_toRightOf="@id/logoImage"
+            android:textColor="#000"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textSize="17sp"
+            />
+
+    </LinearLayout>
+</LinearLayout>
+
 </RelativeLayout>
