@@ -1,68 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="10">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logoImageView"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:src="@drawable/wao_logo"></androidx.appcompat.widget.AppCompatImageView>
+        android:layout_weight="3"
+        android:src="@drawable/waologotrans"></androidx.appcompat.widget.AppCompatImageView>
 
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_gravity="center_horizontal"
+     android:layout_weight="1"
+     android:orientation="vertical">
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Stad"
+         android:layout_gravity="center_horizontal"
+         android:textSize="30dp"></TextView>
+     <Spinner
+         android:id="@+id/citySpinner"
+         android:layout_width="200dp"
+         android:layout_height="wrap_content"
+         android:background="@android:drawable/btn_dropdown"
+         android:layout_gravity="center_horizontal"
+         android:spinnerMode="dropdown"/>
+ </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stad"
         android:layout_gravity="center_horizontal"
-        android:textSize="30dp"></TextView>
-    <Spinner
-        android:id="@+id/citySpinner"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:layout_gravity="center_horizontal"
-        android:spinnerMode="dropdown"/>
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category"
-        android:layout_gravity="center_horizontal"
-        android:textSize="30dp"></TextView>
-    <Spinner
-        android:id="@+id/categorySpinner"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp"></TextView>
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_weight="1">
 
         <ImageButton
             android:id="@+id/mapButton"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:background="@drawable/button_default"
             android:layout_alignBottom="@id/categorySpinner"
             android:onClick="mapButtonClick"
             android:src="@drawable/ic_action_name" />
 
-        <Button
+        <ImageButton
             android:id="@+id/listButton"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
             android:onClick="listButtonClick"
+            android:background="@drawable/button_default"
             android:layout_alignBottom="@id/citySpinner"
-            android:src="@drawable/ic_action_name"
+            android:src="@drawable/ic_list_black_24dp"
             android:text="List"
             />
     </LinearLayout>

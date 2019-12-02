@@ -5,23 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:weightSum="10">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logoImageView"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:src="@drawable/wao_logo"></androidx.appcompat.widget.AppCompatImageView>
+        android:layout_weight="5"
+        android:src="@drawable/waologotrans"></androidx.appcompat.widget.AppCompatImageView>
 
     <EditText
         android:id="@+id/userNameEditText"
         android:layout_width="280dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_below="@id/logoImageView"
         android:layout_gravity="center_horizontal"
+        android:backgroundTint="#F5F5F5"
         android:drawableLeft="@drawable/ic_person_black_24dp"
         android:hint="Gebruikersnaam"
         android:background="#BCB6B2"
@@ -31,7 +33,8 @@
 
     <LinearLayout
         android:layout_width="280dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:id="@+id/passwordLayout"
@@ -40,10 +43,10 @@
         <EditText
             android:id="@+id/passwordNameEditText"
             android:layout_width="230dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_below="@id/userNameEditText"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:backgroundTint="#F5F5F5"
             android:hint="Gebruikersnaam"
             android:background="#BCB6B2"
             android:drawableLeft="@drawable/lock_black"
@@ -55,6 +58,7 @@
             android:layout_height="match_parent"
             android:background="#BCB6B2"
             android:onClick="seePasswordButtonClick"
+            android:backgroundTint="#F5F5F5"
             android:id="@+id/seePasswordButton"
             android:src="@drawable/eye_black"></ImageButton>
     </LinearLayout>
@@ -63,9 +67,10 @@
     <Button
         android:id="@+id/loginButton"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/passwordNameEditText"
         android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
         android:layout_marginTop="30dp"
         android:onClick="loginButtonClick"
         android:background="@drawable/button_default"
@@ -75,7 +80,8 @@
     <Button
         android:id="@+id/registerButton"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/loginButton"
         android:layout_centerHorizontal="true"

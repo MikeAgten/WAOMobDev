@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@drawable/redbackground_blackborder">
+    android:background="#F1F1F1">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="80dp"

@@ -14,16 +14,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="20dp">
+    android:weightSum="10">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"></LinearLayout>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_weight="2">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stad"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"></TextView>
-
-
     <Spinner
         android:id="@+id/citySpinner"
         android:layout_width="200dp"
@@ -32,42 +40,55 @@
         android:layout_gravity="center_horizontal"
         android:spinnerMode="dropdown"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category"
-        android:layout_gravity="center_horizontal"
-        android:textSize="30dp"></TextView>
-    <Spinner
-        android:id="@+id/categorySpinner"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
+</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp"></TextView>
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
+        android:layout_weight="2"
         android:layout_marginTop="30dp">
 
         <ImageButton
             android:id="@+id/mapButton"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:background="@drawable/button_default"
             android:layout_alignBottom="@id/categorySpinner"
             android:onClick="mapButtonClick"
             android:src="@drawable/ic_action_name" />
 
-        <Button
+        <ImageButton
             android:id="@+id/listButton"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:background="@drawable/button_default"
             android:onClick="listButtonClick"
             android:layout_alignBottom="@id/citySpinner"
-            android:src="@drawable/ic_action_name"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_list_black_24dp"
             android:text="List"
             />
     </LinearLayout>

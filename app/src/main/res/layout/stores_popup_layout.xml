@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/background_popup"
+        android:background="@color/appColor"
         android:orientation="vertical">
 
         <LinearLayout
@@ -25,7 +25,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="Winkelnaam"
                 android:textAlignment="center"
-                android:background="@drawable/redbackground_blackborder"
+                android:background="@color/appColor"
                 android:textSize="20dp"/>
         </LinearLayout>
 
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/background_popup">
+                android:background="#F5F5F5">
 
                 <LinearLayout
                     android:layout_width="match_parent"

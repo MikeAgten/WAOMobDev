@@ -10,77 +10,86 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
-        android:src="@drawable/wao_logo"></androidx.appcompat.widget.AppCompatImageView>
+        android:src="@drawable/waologotrans"></androidx.appcompat.widget.AppCompatImageView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="50dp">
+        android:weightSum="8">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"></LinearLayout>
         <EditText
             android:id="@+id/userNameEditText"
             android:layout_width="280dp"
             android:layout_height="50dp"
+            android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:background="#BCB6B2"
-            android:hint="Gebruikersnaam"
+            android:backgroundTint="#F5F5F5"
             android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:hint="Gebruikersnaam"
             android:inputType="textPersonName"
-            android:maxLength="50"
-            ></EditText>
+            android:maxLength="50"></EditText>
 
         <LinearLayout
-            android:layout_width="280dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
             android:id="@+id/passwordLayout"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userNameEditText"
+            android:layout_weight="2"
             android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_below="@id/userNameEditText">
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/passwordNameEditText"
                 android:layout_width="230dp"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:layout_below="@id/userNameEditText"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:hint="Wachtwoord"
+                android:backgroundTint="#F5F5F5"
                 android:background="#BCB6B2"
                 android:drawableLeft="@drawable/lock_black"
+                android:hint="Wachtwoord"
                 android:inputType="textPassword"
-                android:maxLength="50"
-                ></EditText>
+                android:maxLength="50"></EditText>
+
             <ImageButton
+                android:id="@+id/seePasswordButton"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="#BCB6B2"
+                android:backgroundTint="#F5F5F5"
                 android:onClick="seePasswordButtonClick"
-                android:id="@+id/seePasswordButton"
                 android:src="@drawable/eye_black"></ImageButton>
         </LinearLayout>
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:onClick="loginButtonClick"
-            android:background="@drawable/button_default"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/passwordNameEditText"
+            android:background="@drawable/button_default"
+            android:onClick="loginButtonClick"
             android:text="Login"
             android:textColor="#F1E5E5" />
 
         <Button
             android:id="@+id/registerButton"
             android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_gravity="center_horizontal"
-            android:onClick="registerButtonClick"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_default"
+            android:onClick="registerButtonClick"
             android:text="Register"
             android:textColor="#F1E5E5" />
 
