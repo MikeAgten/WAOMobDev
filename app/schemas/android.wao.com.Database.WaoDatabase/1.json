@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f0f68bf69e728ece44ba413ea59e123d",
+    "identityHash": "c674d845c8be01a2d124d0bcf8a52725",
     "entities": [
       {
         "tableName": "Shop",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `visits` INTEGER NOT NULL, `type_business` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `visits` INTEGER NOT NULL, `type_business` TEXT, `latitute` REAL NOT NULL, `longitute` REAL NOT NULL, `city` TEXT, `imageurl` TEXT)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -31,6 +31,30 @@
             "columnName": "type_business",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "latitute",
+            "columnName": "latitute",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitute",
+            "columnName": "longitute",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageurl",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -46,7 +70,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f0f68bf69e728ece44ba413ea59e123d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c674d845c8be01a2d124d0bcf8a52725')"
     ]
   }
 }

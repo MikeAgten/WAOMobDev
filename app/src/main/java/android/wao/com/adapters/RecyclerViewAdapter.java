@@ -45,13 +45,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
 
-        /*viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "testclick on item", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
         return viewHolder;
 
     }
@@ -100,7 +93,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imageName = itemView.findViewById(R.id.storeNameTextview);
             parentLayout = itemView.findViewById(R.id.parent_layout);
             store_popup = (LinearLayout) itemView.findViewById(R.id.popup_layout);
+    }
 
-        }
     }
 }

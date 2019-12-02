@@ -11,7 +11,9 @@ import android.location.Location;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.wao.com.Database.WaoDatabase;
 import android.wao.com.R;
+import android.wao.com.model.Shop;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -26,6 +28,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.List;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -35,11 +39,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public double currentLatitute;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
+    WaoDatabase db = MainActivity.getDb();
+    String typeBusiness;
+    String city;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        typeBusiness = getIntent().getExtras().getString("type_business","defaultKey");
+        city = getIntent().getExtras().getString("city","defaultKey");
         setContentView(R.layout.activity_maps);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -70,6 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     currentLatitute = currentLocation.getLatitude();
                     currentLongitute = currentLocation.getLongitude();
                     Log.d("halp",""+currentLocation.getLatitude());
+
                     Log.d("long",""+  currentLocation.getLongitude());
                     //krijgen wel de juiste locatie binnen
 
@@ -99,6 +111,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try{
 
             mMap = googleMap;
+            List<Shop> shopsData = db.shopDAO().getAll();
+
 
             //eerst gaan we alle POI's uitzetten
             googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this,R.raw.style_json));
@@ -107,18 +121,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             // ZEt een marker in hasselt en verplaats de camera naar het centrum van hasselt
             LatLng hasselt = new LatLng(50.9315293 ,5.3351366);
+            LatLng genk = new LatLng(50.9662569, 5.4970428);
+            LatLng  antwerpen  = new LatLng(51.2197401 ,4.4005566);
+
             float zoomLevel = 17f; //This goes up to 21
             //mMap.addMarker(new MarkerOptions().position(hasselt).title("Marker On zara"));
 
-          //  Log.d("lat", "" + currentLocation.getLatitude());
+            for( int i =0; i< shopsData.size(); i++){
 
+                if(typeBusiness.equals(shopsData.get(i).typeBusiness) && city.equals(shopsData.get(i).city)){
+                    LatLng currentshop = new LatLng(shopsData.get(i).latitute, shopsData.get(i).longitute);
+                    MarkerOptions marker = new MarkerOptions().position(currentshop).title(""+  shopsData.get(i).shopName);
+                    googleMap.addMarker(marker);
+                }
+             if(typeBusiness.equals("defaultKey")){
+                 LatLng currentshop = new LatLng(shopsData.get(i).latitute, shopsData.get(i).longitute);
+                 MarkerOptions marker = new MarkerOptions().position(currentshop).title(""+  shopsData.get(i).shopName);
+                 googleMap.addMarker(marker);
+             }
+
+            }
             LatLng current = new LatLng(currentLatitute, currentLongitute);
            MarkerOptions markerOptions = new MarkerOptions().position(current).title("Ik ben hier");
             googleMap.addMarker(markerOptions);
 
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hasselt,zoomLevel));
-
-
+            if(city.equals("Hasselt")){
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hasselt,zoomLevel));
+            }else{
+                if(city.equals("Genk")){
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(genk,zoomLevel));
+                }else{
+                    if(city.equals("Antwerpen")){
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(antwerpen,zoomLevel));
+                    }else {
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, zoomLevel));
+                    }
+                }
+            }
 
 
         }catch(Resources.NotFoundException e){

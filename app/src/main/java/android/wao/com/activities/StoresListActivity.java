@@ -21,6 +21,8 @@ public class StoresListActivity extends AppCompatActivity {
 
     private static final String TAG = "StoresListActivity";
     WaoDatabase db = MainActivity.getDb();
+    String typeBusiness;
+    String city;
 
     //Vars
     private ArrayList<String> mNames = new ArrayList<>();
@@ -29,6 +31,8 @@ public class StoresListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        typeBusiness = getIntent().getExtras().getString("type_business","defaultKey");
+        city = getIntent().getExtras().getString("city","defaultKey");
         setContentView(R.layout.activity_stores_list);
         initImageBitMaps();
         logDb();
@@ -47,7 +51,8 @@ public class StoresListActivity extends AppCompatActivity {
     public void mapsButtonClick(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MapsActivity.class);
-
+        intent.putExtra("city",city);
+        intent.putExtra("type_business", typeBusiness);
         Log.d(TAG, "onClick: CLICKED");
 
         startActivity(intent);
@@ -57,18 +62,13 @@ public class StoresListActivity extends AppCompatActivity {
         Log.d(TAG, "initImageBitMaps: preparing bitmaps");
         List<Shop> shopsData = db.shopDAO().getAll();
         for(int i=0; i< shopsData.size(); i++){
-            mNames.add(shopsData.get(i).shopName);
+
+            if(typeBusiness.equals(shopsData.get(i).typeBusiness) && city.equals(shopsData.get(i).city)){
+                mNames.add(shopsData.get(i).shopName);
+                mImageUrls.add(shopsData.get(i).imageUrl);
+            }
+
         }
-        /*
-        mNames.add("Jack and Jones");
-        mImageUrls.add("R.drawable.jackandjones");
-        mNames.add("Primark");
-        mNames.add("Balenciaga");
-        mNames.add("Gucci");
-        mNames.add("Stone Island");
-
-         */
-
         initRecyclerView();
     }
 
