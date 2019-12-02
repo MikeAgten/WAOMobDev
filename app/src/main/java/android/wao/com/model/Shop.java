@@ -19,4 +19,25 @@ public class Shop {
     @ColumnInfo(name="type_business")
     public String typeBusiness;
 
+    @ColumnInfo(name="latitute")
+    public double latitute;
+
+    @ColumnInfo(name= "longitute")
+    public double longitute;
+
+
+    @ColumnInfo(name="city")
+    public String city;
+
+    @ColumnInfo (name="imageurl")
+    public String imageUrl;
+
+    @ColumnInfo ( name= "website")
+    public String website;
+
+    @ColumnInfo (name = "open")
+    public String open;
+
+
+
 }

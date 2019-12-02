@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private ImageButton seePasswordButton;
     private static WaoDatabase db;
+    private FirebaseUser loggedInUser;
+
 
 
     @Override
@@ -42,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started");
         mAuth = FirebaseAuth.getInstance();
         db = Room.databaseBuilder(getApplicationContext(),
-                WaoDatabase.class, "WaoDB").allowMainThreadQueries().build();
+                WaoDatabase.class, "WaoDB").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+
         Log.d(TAG, db.toString());
         //checkIfDatabaseExists(db);
 
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
 
+
     }
 
     public void createUser(String email, String password){
@@ -91,30 +95,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signInUser(String email, String password){
-
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            loggedInUser = mAuth.getCurrentUser();
                             // update the ui
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
-
-                            // update the uit
                         }
-
-                        // ...
                     }
                 });
-
     }
 
 
@@ -128,11 +126,15 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }else{
             signInUser(username,password);
-            if(mAuth.getCurrentUser() != null){
+            FirebaseUser loggedInUser = FirebaseAuth.getInstance().getCurrentUser();
+            if(loggedInUser != null ){
                 Intent intent = new Intent();
                 intent.setClass(this, SelectCityCategoryActivity.class);
                 Log.d(TAG, "onClick: CLICKED");
                 startActivity(intent);
+            }else{
+                Toast.makeText(MainActivity.this, "Password or username wrong try again",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -146,14 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
         createUser(username,password);
 
-
-       /*
-        Intent intent = new Intent();
-        intent.setClass(this, RegisterActivity.class);
-        Log.d(TAG, "onClick: CLICKED");
-        startActivity(intent);
-
-        */
     }
 
     public void seePasswordButtonClick(View view) {
