@@ -36,8 +36,6 @@ public class StoresListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stores_list);
         initImageBitMaps();
         logDb();
-
-
     }
 
     //Just to check whats in the database
