@@ -3,13 +3,12 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:padding="5dp"
     android:id="@+id/parent_layout"
-    android:background="@color/popupColor">
+    android:background="@drawable/backgroundlistitem">
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="#F1F1F1">
+    android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="80dp"
