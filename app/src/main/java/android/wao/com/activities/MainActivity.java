@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton seePasswordButton;
     private static WaoDatabase db;
     private FirebaseUser loggedInUser;
+    private boolean signedIn = false;
 
 
 
@@ -104,12 +105,13 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             loggedInUser = mAuth.getCurrentUser();
-                            // update the ui
+                            signedIn = true;
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            signedIn = false;
                         }
                     }
                 });
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             signInUser(username,password);
             FirebaseUser loggedInUser = FirebaseAuth.getInstance().getCurrentUser();
-            if(loggedInUser != null ){
+            if(loggedInUser != null){
                 Intent intent = new Intent();
                 intent.setClass(this, SelectCityCategoryActivity.class);
                 Log.d(TAG, "onClick: CLICKED");

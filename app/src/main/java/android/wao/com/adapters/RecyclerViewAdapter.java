@@ -38,6 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mImageNames = mImageNames;
         this.mImages = mImages;
         this.mContext = mContext;
+
     }
 
     @NonNull
@@ -55,6 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
 
         holder.imageName.setText(mImageNames.get(position));
+
 
         myDialog = new Dialog(mContext);
         myDialog.setContentView(R.layout.stores_popup_layout);

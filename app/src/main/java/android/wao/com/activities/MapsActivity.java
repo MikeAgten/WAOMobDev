@@ -158,8 +158,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 }
             }
-
-
         }catch(Resources.NotFoundException e){
         }
     }
