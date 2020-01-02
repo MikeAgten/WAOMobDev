@@ -57,6 +57,7 @@
                         android:background="@drawable/redbackground_blackborder"></Button>
 
                     <Button
+                        android:id="@+id/image_call"
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:layout_height="match_parent"

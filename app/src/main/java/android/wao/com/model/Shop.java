@@ -38,6 +38,9 @@ public class Shop {
     @ColumnInfo (name = "open")
     public String open;
 
+    @ColumnInfo (name = "phonenumber")
+    public String PhoneNumber;
+
 
 
 }

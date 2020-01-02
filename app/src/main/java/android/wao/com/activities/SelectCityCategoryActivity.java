@@ -56,6 +56,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop1.imageUrl = "R.drawable.jackandjones.png";
         shop1.open = "10:00–18:00";
         shop1.website = "https://www.zara.com/be/nl/";
+        shop1.PhoneNumber = "011379690";
 
 
 
@@ -70,6 +71,8 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop2.imageUrl = "R.drawable.jackandjones.png";
         shop2.open = "09:00–18:00";
         shop2.website = "https://www.jackjones.com/be/nl/home?gclid=EAIaIQobChMIn56i3Y2X5gIVhLTtCh2mWgB6EAAYASAAEgJRA_D_BwE&gclsrc=aw.ds";
+        shop2.PhoneNumber = "011781022";
+
 
 
         Shop shop3 = new Shop();
@@ -79,9 +82,10 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop3.city = "Hasselt";
         shop3.latitute = 50.9313688;
         shop3.longitute = 5.3357274;
-        shop3.imageUrl = "R.drawable.jackandjones.png";
-        shop3.open = "80:00–14:00";
+        shop3.imageUrl="R.drawable.jackandjones.png";
+        shop3.open = "08:00–14:00";
         shop3.website = "https://www2.hm.com/nl_be/index.html";
+        shop3.PhoneNumber =  "011501920";
 
         Shop shop4 = new Shop();
         shop4.shopName = "Pizza hut";
@@ -93,6 +97,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop4.imageUrl = "R.drawable.jackandjones.png";
         shop4.open = "11:00–18:30";
         shop4.website=  "https://restaurants.pizzahut.be/fr/restaurant/restaurant-hasselt";
+        shop4.PhoneNumber = "011255806";
 
         Shop shop5 = new Shop();
         shop5.shopName = "Veritas";
@@ -104,6 +109,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop5.imageUrl = "R.drawable.jackandjones.png";
         shop5.open = "10:30-19:00";
         shop5.website = "https://www.veritas.be/be_nl";
+        shop5.PhoneNumber = "089858967";
 
 
         shopsDummy.add(shop1);

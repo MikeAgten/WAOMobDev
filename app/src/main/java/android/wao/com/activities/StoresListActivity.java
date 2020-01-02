@@ -54,9 +54,9 @@ public class StoresListActivity extends AppCompatActivity {
         intent.putExtra("city",city);
         intent.putExtra("type_business", typeBusiness);
         Log.d(TAG, "onClick: CLICKED");
-
         startActivity(intent);
     }
+
 
     private void initImageBitMaps(){
         Log.d(TAG, "initImageBitMaps: preparing bitmaps");
@@ -66,9 +66,8 @@ public class StoresListActivity extends AppCompatActivity {
             if(typeBusiness.equals(shopsData.get(i).typeBusiness) && city.equals(shopsData.get(i).city)){
                 mNames.add(shopsData.get(i).shopName);
                 mImageUrls.add(shopsData.get(i).imageUrl);
-                websiteUrls.add()
+                websiteUrls.add(shopsData.get(i).website);
             }
-
         }
         initRecyclerView();
     }

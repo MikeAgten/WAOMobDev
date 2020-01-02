@@ -1,7 +1,11 @@
 package android.wao.com.adapters;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -13,6 +17,8 @@ import android.view.ViewGroup;
 import android.wao.com.Database.WaoDatabase;
 import android.wao.com.R;
 import android.wao.com.activities.MainActivity;
+import android.wao.com.activities.StoresListActivity;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -20,12 +26,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements
+        ActivityCompat.OnRequestPermissionsResultCallback {
     private static final String TAG = "RecyclerViewAdapter";
+    private static final int REQUEST_CALL = 1;
+    Button imageCall ;
+
     WaoDatabase db = MainActivity.getDb();
     Dialog myDialog;
     private int positionClicked;
@@ -82,21 +94,61 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     private Dialog fillDialogData(Dialog myDialog) {
+        imageCall = myDialog.findViewById(R.id.image_call);
         TextView storeName = myDialog.findViewById(R.id.popupStorename);
         TextView Monday = myDialog.findViewById(R.id.MondayTextView);
-        TextView ThuesDay = myDialog.findViewById(R.id.TheusDayTextView);
+        TextView TuesDay = myDialog.findViewById(R.id.TheusDayTextView);
         TextView WednesDay = myDialog.findViewById(R.id.WednesDayTextView);
         TextView ThursDay = myDialog.findViewById(R.id.ThursDayTextView);
         TextView Friday = myDialog.findViewById(R.id.FridayTextView);
+        TextView Saturday = myDialog.findViewById(R.id.SaturDayTextView);
+        TextView Sunday =myDialog.findViewById(R.id.SunDayTextView);
 
         storeName.setText(mImageNames.get(positionClicked));
-        Monday.setText("database uren?");
-        ThuesDay.setText("database uren?");
-        WednesDay.setText("database uren?");
-        ThursDay.setText("database uren?");
-        Friday.setText("database uren?");
+        String openHours = db.shopDAO().getAll().get(positionClicked).open;
+        Monday.setText(openHours);
+        TuesDay.setText(openHours);
+        WednesDay.setText(openHours);
+        ThursDay.setText(openHours);
+        Friday.setText(openHours);
+        Saturday.setText(openHours);
+        Sunday.setText(openHours);
+
+        imageCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePhoneCall();
+            }
+        });
+
 
         return  myDialog;
+    }
+
+    private void makePhoneCall(){
+        String number = db.shopDAO().getAll().get(positionClicked).PhoneNumber;
+        if(number.trim().length()>0){
+                if(ContextCompat.checkSelfPermission(myDialog.getContext(),
+                        Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions( myDialog.getOwnerActivity(),new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+                }else{
+                    String dial = "tel:" + number;
+                    mContext.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+                }
+        }else{
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantresults) {
+        if(requestCode == REQUEST_CALL ){
+            if(grantresults.length> 0 && grantresults[0] == PackageManager.PERMISSION_GRANTED){
+                makePhoneCall();
+            }else{
+                Toast.makeText(this.mContext,"Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.wao.com.model.Shop;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Shop.class},version =3)
+@Database(entities = {Shop.class},version =6)
 public abstract class WaoDatabase extends RoomDatabase {
     public abstract ShopDAO shopDAO();
 }

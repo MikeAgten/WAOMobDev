@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean signedIn = false;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,24 +45,20 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = Room.databaseBuilder(getApplicationContext(),
                 WaoDatabase.class, "WaoDB").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-
         Log.d(TAG, db.toString());
-        //checkIfDatabaseExists(db);
-
     }
 
-    public static WaoDatabase getDb(){
+    public static WaoDatabase getDb() {
         return db;
     }
 
-    public void checkIfDatabaseExists(WaoDatabase database){
-            if(database.isOpen()){
-            }else{
-                db = Room.databaseBuilder(getApplicationContext(),
-                        WaoDatabase.class, "WaoDB").build();
-            }
+    public void checkIfDatabaseExists(WaoDatabase database) {
+        if (database.isOpen()) {
+        } else {
+            db = Room.databaseBuilder(getApplicationContext(),
+                    WaoDatabase.class, "WaoDB").build();
+        }
     }
-
 
 
     @Override
@@ -72,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-    public void createUser(String email, String password){
-        mAuth.createUserWithEmailAndPassword(email,password).
+    public void createUser(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password).
                 addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -81,27 +76,25 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail: success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //update the UI
-                        }else{
-                            Log.w(TAG,"CreateUSerWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this,"Authentication failed", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.w(TAG, "CreateUSerWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    public void signInUser(String email, String password){
+    public void signInUser(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             loggedInUser = mAuth.getCurrentUser();
                             signedIn = true;
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -113,22 +106,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void loginButtonClick(View view) {
-        EditText  user = (EditText) findViewById(R.id.userNameEditText);
+        EditText user = (EditText) findViewById(R.id.userNameEditText);
         String username = user.getText().toString();
-        EditText  pass = (EditText) findViewById(R.id.passwordNameEditText);
+        EditText pass = (EditText) findViewById(R.id.passwordNameEditText);
         String password = pass.getText().toString();
-        if(username.isEmpty()  || password.isEmpty()){
+        if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(MainActivity.this, "Fill in user credentials",
                     Toast.LENGTH_SHORT).show();
-        }else{
-            signInUser(username,password);
+        } else {
+            signInUser(username, password);
             FirebaseUser loggedInUser = FirebaseAuth.getInstance().getCurrentUser();
-            if(loggedInUser != null){
+            if (loggedInUser != null) {
                 Intent intent = new Intent();
                 intent.setClass(this, SelectCityCategoryActivity.class);
                 Log.d(TAG, "onClick: CLICKED");
                 startActivity(intent);
-            }else{
+            } else {
                 Toast.makeText(MainActivity.this, "Password or username wrong try again",
                         Toast.LENGTH_SHORT).show();
             }
@@ -137,12 +130,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void registerButtonClick(View view) {
         //userNameTextView
-        EditText  user = (EditText) findViewById(R.id.userNameEditText);
+        EditText user = (EditText) findViewById(R.id.userNameEditText);
         String username = user.getText().toString();
-        EditText  pass = (EditText) findViewById(R.id.passwordNameEditText);
+        EditText pass = (EditText) findViewById(R.id.passwordNameEditText);
         String password = pass.getText().toString();
 
-        createUser(username,password);
+        createUser(username, password);
 
     }
 
@@ -150,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         seePasswordButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         System.out.println(" pressed ");
                         passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
