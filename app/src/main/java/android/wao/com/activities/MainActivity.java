@@ -58,13 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkIfDatabaseExists(WaoDatabase database){
             if(database.isOpen()){
-                //alles in orde
             }else{
                 db = Room.databaseBuilder(getApplicationContext(),
                         WaoDatabase.class, "WaoDB").build();
             }
-        //app/schemas has a json file with database info now
-
     }
 
 
@@ -73,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
-
-
     }
 
     public void createUser(String email, String password){
