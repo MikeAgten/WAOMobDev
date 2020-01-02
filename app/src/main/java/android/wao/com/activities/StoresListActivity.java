@@ -1,6 +1,7 @@
 package android.wao.com.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,7 @@ public class StoresListActivity extends AppCompatActivity {
     //Vars
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();//urls van images in te laden
+    private ArrayList<String> websiteUrls = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class StoresListActivity extends AppCompatActivity {
             if(typeBusiness.equals(shopsData.get(i).typeBusiness) && city.equals(shopsData.get(i).city)){
                 mNames.add(shopsData.get(i).shopName);
                 mImageUrls.add(shopsData.get(i).imageUrl);
+                websiteUrls.add()
             }
 
         }
@@ -79,4 +82,10 @@ public class StoresListActivity extends AppCompatActivity {
     }
 
 
+    public void websiteButtonClick(View view) {
+        String url = "https://www.youtube.com/watch?v=_KLZhtbI3js";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
 }

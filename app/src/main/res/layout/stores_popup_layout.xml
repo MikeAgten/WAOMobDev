@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/popupStorename"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
@@ -43,13 +44,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:layout_gravity="center_horizontal"
+                    android:weightSum="2">
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Website"
+                        android:onClick="websiteButtonClick"
                         android:layout_margin="5dp"
                         android:background="@drawable/redbackground_blackborder"></Button>
 
@@ -61,13 +64,6 @@
                         android:layout_margin="5dp"
                         android:background="@drawable/redbackground_blackborder"></Button>
 
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:text="Route"
-                        android:background="@drawable/redbackground_blackborder"></Button>
                 </LinearLayout>
 
                 <TextView
@@ -138,44 +134,50 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
                     <TextView
+                        android:id="@+id/MondayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:text="voorbeeld"
                         android:textColor="#000000"></TextView>
                     <TextView
+                        android:id="@+id/TheusDayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:text="voorbeeld"
                         android:textColor="#000000"></TextView>
                     <TextView
+                        android:id="@+id/WednesDayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:text="voorbeeld"
                         android:textColor="#000000"></TextView>
                     <TextView
+                        android:id="@+id/ThursDayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:text="voorbeeld"
                         android:textColor="#000000"></TextView>
                     <TextView
+                        android:id="@+id/FridayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:text="voorbeeld"
                         android:textColor="#000000"></TextView>
                     <TextView
+                        android:id="@+id/SaturDayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:text="voorbeeld"
                         android:textColor="#000000"></TextView>
                     <TextView
+                        android:id="@+id/SunDayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"

@@ -28,6 +28,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final String TAG = "RecyclerViewAdapter";
     WaoDatabase db = MainActivity.getDb();
     Dialog myDialog;
+    private int positionClicked;
 
     private ArrayList<String> mImageNames = new ArrayList<>();
     private ArrayList<String> mImages = new ArrayList<>();
@@ -64,6 +65,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                positionClicked = position;
+                myDialog = fillDialogData(myDialog);
                 Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
                 Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show(); // laat even zien waar je op klikte
                 int visits =  db.shopDAO().getAmountOfTimesVisited(mImageNames.get(position));
@@ -76,6 +79,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 myDialog.show();
             }
         });
+    }
+
+    private Dialog fillDialogData(Dialog myDialog) {
+        TextView storeName = myDialog.findViewById(R.id.popupStorename);
+        TextView Monday = myDialog.findViewById(R.id.MondayTextView);
+        TextView ThuesDay = myDialog.findViewById(R.id.TheusDayTextView);
+        TextView WednesDay = myDialog.findViewById(R.id.WednesDayTextView);
+        TextView ThursDay = myDialog.findViewById(R.id.ThursDayTextView);
+        TextView Friday = myDialog.findViewById(R.id.FridayTextView);
+
+        storeName.setText(mImageNames.get(positionClicked));
+        Monday.setText("database uren?");
+        ThuesDay.setText("database uren?");
+        WednesDay.setText("database uren?");
+        ThursDay.setText("database uren?");
+        Friday.setText("database uren?");
+
+        return  myDialog;
     }
 
     @Override
