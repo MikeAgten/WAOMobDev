@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean signedIn = false;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,19 +46,36 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = Room.databaseBuilder(getApplicationContext(),
                 WaoDatabase.class, "WaoDB").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+
         Log.d(TAG, db.toString());
+        checkIfDatabaseExists();
+
     }
 
-    public static WaoDatabase getDb() {
+    public static WaoDatabase getDb(){
         return db;
     }
 
-    public void checkIfDatabaseExists(WaoDatabase database) {
-        if (database.isOpen()) {
-        } else {
-            db = Room.databaseBuilder(getApplicationContext(),
-                    WaoDatabase.class, "WaoDB").build();
-        }
+    public void checkIfDatabaseExists(){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (getDb().isOpen()) {
+                    //alles in orde
+                } else {
+                    db = Room.databaseBuilder(getApplicationContext(),
+                            WaoDatabase.class, "WaoDB").build();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                    }
+                });
+                //app/schemas has a json file with database info now
+
+            }
+        });
     }
 
 

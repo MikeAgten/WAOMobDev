@@ -6,9 +6,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +32,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements
@@ -44,11 +47,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private ArrayList<String> mImageNames = new ArrayList<>();
     private ArrayList<String> mImages = new ArrayList<>();
+    private ArrayList<String> websites = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> mImageNames, ArrayList<String> mImages, Context mContext) {
+    public RecyclerViewAdapter(ArrayList<String> mImageNames, ArrayList<String> mImages, ArrayList<String> websites, Context mContext) {
         this.mImageNames = mImageNames;
         this.mImages = mImages;
+        this.websites = websites;
         this.mContext = mContext;
 
     }
@@ -68,6 +73,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
 
         holder.imageName.setText(mImageNames.get(position));
+        Log.d(TAG, "onBindViewHolder: " + mImages.get(position));
+        int tempInt = getResId(mImages.get(position), R.drawable.class);
+        holder.imageView.setImageResource(tempInt);
 
 
         myDialog = new Dialog(mContext);
@@ -93,6 +101,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
     }
 
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
     private Dialog fillDialogData(Dialog myDialog) {
         imageCall = myDialog.findViewById(R.id.image_call);
         TextView storeName = myDialog.findViewById(R.id.popupStorename);
@@ -103,6 +122,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView Friday = myDialog.findViewById(R.id.FridayTextView);
         TextView Saturday = myDialog.findViewById(R.id.SaturDayTextView);
         TextView Sunday =myDialog.findViewById(R.id.SunDayTextView);
+        Button websiteButton = myDialog.findViewById(R.id.websiteButton);
 
         storeName.setText(mImageNames.get(positionClicked));
         String openHours = db.shopDAO().getAll().get(positionClicked).open;
@@ -120,6 +140,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 makePhoneCall();
             }
         });
+
+        websiteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = websites.get(positionClicked);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                mContext.startActivity(i);
+            }
+        });
+
 
 
         return  myDialog;
