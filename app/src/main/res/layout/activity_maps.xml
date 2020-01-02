@@ -18,6 +18,7 @@
         android:layout_marginBottom="20dp"
         android:src="@drawable/ic_list_black_24dp"
         android:background="@drawable/button_default"
+        android:onClick="listButtonClick"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"></ImageButton>
 </RelativeLayout>

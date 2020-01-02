@@ -66,7 +66,7 @@ public class StoresListActivity extends AppCompatActivity {
             if(typeBusiness.equals(shopsData.get(i).typeBusiness) && city.equals(shopsData.get(i).city)){
                 mNames.add(shopsData.get(i).shopName);
                 mImageUrls.add(shopsData.get(i).imageUrl);
-                websiteUrls.add()
+                websiteUrls.add(shopsData.get(i).website);
             }
 
         }
@@ -76,14 +76,14 @@ public class StoresListActivity extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init recuclerView");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames, mImageUrls, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames, mImageUrls, websiteUrls, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
     public void websiteButtonClick(View view) {
-        String url = "https://www.youtube.com/watch?v=_KLZhtbI3js";
+        String url = websiteUrls.get(1);
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);

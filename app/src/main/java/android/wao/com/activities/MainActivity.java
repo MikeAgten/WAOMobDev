@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 WaoDatabase.class, "WaoDB").allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         Log.d(TAG, db.toString());
-        //checkIfDatabaseExists(db);
+        checkIfDatabaseExists();
 
     }
 
@@ -56,15 +56,26 @@ public class MainActivity extends AppCompatActivity {
         return db;
     }
 
-    public void checkIfDatabaseExists(WaoDatabase database){
-            if(database.isOpen()){
-                //alles in orde
-            }else{
-                db = Room.databaseBuilder(getApplicationContext(),
-                        WaoDatabase.class, "WaoDB").build();
-            }
-        //app/schemas has a json file with database info now
+    public void checkIfDatabaseExists(){
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (getDb().isOpen()) {
+                    //alles in orde
+                } else {
+                    db = Room.databaseBuilder(getApplicationContext(),
+                            WaoDatabase.class, "WaoDB").build();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                    }
+                });
+                //app/schemas has a json file with database info now
+
+            }
+        });
     }
 
 
