@@ -6,41 +6,40 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Shop {
-    @PrimaryKey( autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     public int uid;
 
 
-    @ColumnInfo(name= "name")
+    @ColumnInfo(name = "name")
     public String shopName;
 
-    @ColumnInfo(name="visits")
+    @ColumnInfo(name = "visits")
     public int visitCounter;
 
-    @ColumnInfo(name="type_business")
+    @ColumnInfo(name = "type_business")
     public String typeBusiness;
 
-    @ColumnInfo(name="latitute")
+    @ColumnInfo(name = "latitute")
     public double latitute;
 
-    @ColumnInfo(name= "longitute")
+    @ColumnInfo(name = "longitute")
     public double longitute;
 
 
-    @ColumnInfo(name="city")
+    @ColumnInfo(name = "city")
     public String city;
 
-    @ColumnInfo (name="imageurl")
+    @ColumnInfo(name = "imageurl")
     public String imageUrl;
 
-    @ColumnInfo ( name= "website")
+    @ColumnInfo(name = "website")
     public String website;
 
-    @ColumnInfo (name = "open")
+    @ColumnInfo(name = "open")
     public String open;
 
-    @ColumnInfo (name = "phonenumber")
+    @ColumnInfo(name = "phonenumber")
     public String PhoneNumber;
-
 
 
 }

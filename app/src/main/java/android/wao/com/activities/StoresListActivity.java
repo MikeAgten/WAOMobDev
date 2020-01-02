@@ -25,7 +25,6 @@ public class StoresListActivity extends AppCompatActivity {
     String typeBusiness;
     String city;
 
-    //Vars
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();//urls van images in te laden
     private ArrayList<String> websiteUrls = new ArrayList<>();
@@ -33,37 +32,36 @@ public class StoresListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        typeBusiness = getIntent().getExtras().getString("type_business","defaultKey");
-        city = getIntent().getExtras().getString("city","defaultKey");
+        typeBusiness = getIntent().getExtras().getString("type_business", "defaultKey");
+        city = getIntent().getExtras().getString("city", "defaultKey");
         setContentView(R.layout.activity_stores_list);
         initImageBitMaps();
         logDb();
     }
 
     //Just to check whats in the database
-    public void logDb(){
+    public void logDb() {
         List<Shop> shops = db.shopDAO().getAll();
-        for(int i=0; i< shops.size(); i++){
-            Log.d(TAG,shops.get(i).shopName);
+        for (int i = 0; i < shops.size(); i++) {
+            Log.d(TAG, shops.get(i).shopName);
         }
     }
 
     public void mapsButtonClick(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MapsActivity.class);
-        intent.putExtra("city",city);
+        intent.putExtra("city", city);
         intent.putExtra("type_business", typeBusiness);
         Log.d(TAG, "onClick: CLICKED");
         startActivity(intent);
     }
 
 
-    private void initImageBitMaps(){
-        Log.d(TAG, "initImageBitMaps: preparing bitmaps");
+    private void initImageBitMaps() {
         List<Shop> shopsData = db.shopDAO().getAll();
-        for(int i=0; i< shopsData.size(); i++){
+        for (int i = 0; i < shopsData.size(); i++) {
 
-            if(typeBusiness.equals(shopsData.get(i).typeBusiness) && city.equals(shopsData.get(i).city)){
+            if (typeBusiness.equals(shopsData.get(i).typeBusiness) && city.equals(shopsData.get(i).city)) {
                 mNames.add(shopsData.get(i).shopName);
                 mImageUrls.add(shopsData.get(i).imageUrl);
                 websiteUrls.add(shopsData.get(i).website);
@@ -72,8 +70,7 @@ public class StoresListActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
-    private void initRecyclerView(){
-        Log.d(TAG, "initRecyclerView: init recuclerView");
+    private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames, mImageUrls, websiteUrls, this);
         recyclerView.setAdapter(adapter);
