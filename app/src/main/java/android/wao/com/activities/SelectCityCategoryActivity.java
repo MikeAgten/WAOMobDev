@@ -82,9 +82,8 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop3.city = "Hasselt";
         shop3.latitute = 50.9313688;
         shop3.longitute = 5.3357274;
-        shop3.imageUrl="jackandjones";
+        shop3.imageUrl = "jackandjones";
         shop3.open = "08:00–14:00";
-
         shop3.website = "https://www2.hm.com/nl_be/index.html";
         shop3.PhoneNumber =  "011501920";
 
