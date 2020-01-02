@@ -53,7 +53,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop1.city = "Hasselt";
         shop1.latitute = 50.930432;
         shop1.longitute = 5.3354795;
-        shop1.imageUrl = "jackandjones";
+        shop1.imageUrl = "zara";
         shop1.open = "10:00–18:00";
         shop1.website = "https://www.zara.com/be/nl/";
         shop1.PhoneNumber = "011379690";
@@ -82,7 +82,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop3.city = "Hasselt";
         shop3.latitute = 50.9313688;
         shop3.longitute = 5.3357274;
-        shop3.imageUrl = "jackandjones";
+        shop3.imageUrl = "henm";
         shop3.open = "08:00–14:00";
         shop3.website = "https://www2.hm.com/nl_be/index.html";
         shop3.PhoneNumber =  "011501920";
@@ -94,7 +94,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop4.city = "Hasselt";
         shop4.latitute = 50.938738;
         shop4.longitute = 5.3150144;
-        shop4.imageUrl = "jackandjones";
+        shop4.imageUrl = "pizzahut";
         shop4.open = "11:00–18:30";
         shop4.website=  "https://restaurants.pizzahut.be/fr/restaurant/restaurant-hasselt";
         shop4.PhoneNumber = "011255806";
@@ -106,7 +106,7 @@ public class SelectCityCategoryActivity extends AppCompatActivity {
         shop5.city = "Genk";
         shop5.latitute = 50.9653089;
         shop5.longitute = 5.496772;
-        shop5.imageUrl = "jackandjones";
+        shop5.imageUrl = "veritas";
         shop5.open = "10:30-19:00";
         shop5.website = "https://www.veritas.be/be_nl";
         shop5.PhoneNumber = "089858967";

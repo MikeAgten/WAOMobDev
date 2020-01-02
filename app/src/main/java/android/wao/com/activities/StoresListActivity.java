@@ -29,6 +29,7 @@ public class StoresListActivity extends AppCompatActivity {
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();//urls van images in te laden
     private ArrayList<String> websiteUrls = new ArrayList<>();
+    private ArrayList<String> openHours = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class StoresListActivity extends AppCompatActivity {
                 mNames.add(shopsData.get(i).shopName);
                 mImageUrls.add(shopsData.get(i).imageUrl);
                 websiteUrls.add(shopsData.get(i).website);
+                openHours.add(shopsData.get(i).open);
             }
         }
         initRecyclerView();
@@ -75,7 +77,7 @@ public class StoresListActivity extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init recuclerView");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames, mImageUrls, websiteUrls, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames, mImageUrls, websiteUrls, openHours, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

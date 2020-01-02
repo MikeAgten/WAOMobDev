@@ -48,13 +48,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mImageNames = new ArrayList<>();
     private ArrayList<String> mImages = new ArrayList<>();
     private ArrayList<String> websites = new ArrayList<>();
+    private ArrayList<String> openHours;
     private Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> mImageNames, ArrayList<String> mImages, ArrayList<String> websites, Context mContext) {
+    public RecyclerViewAdapter(ArrayList<String> mImageNames, ArrayList<String> mImages, ArrayList<String> websites, ArrayList<String> openHours, Context mContext) {
         this.mImageNames = mImageNames;
         this.mImages = mImages;
         this.websites = websites;
         this.mContext = mContext;
+        this.openHours = openHours;
 
     }
 
@@ -76,6 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: " + mImages.get(position));
         int tempInt = getResId(mImages.get(position), R.drawable.class);
         holder.imageView.setImageResource(tempInt);
+        holder.openHours.setText(openHours.get(position));
 
 
         myDialog = new Dialog(mContext);
@@ -192,6 +195,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private LinearLayout store_popup;
         ImageView imageView;
         TextView imageName;
+        TextView openHours;
         RelativeLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -199,6 +203,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imageName = itemView.findViewById(R.id.storeNameTextview);
             parentLayout = itemView.findViewById(R.id.parent_layout);
             store_popup = (LinearLayout) itemView.findViewById(R.id.popup_layout);
+            openHours = itemView.findViewById(R.id.OpeningTodayTextview);
     }
 
     }
