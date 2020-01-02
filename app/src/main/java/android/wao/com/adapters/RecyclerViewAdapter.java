@@ -39,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ActivityCompat.OnRequestPermissionsResultCallback {
     private static final String TAG = "RecyclerViewAdapter";
     private static final int REQUEST_CALL = 1;
-    Button imageCall ;
+    Button imageCall;
 
     WaoDatabase db = MainActivity.getDb();
     Dialog myDialog;
@@ -63,7 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
@@ -92,12 +92,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 myDialog = fillDialogData(myDialog);
                 Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
                 Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show(); // laat even zien waar je op klikte
-                int visits =  db.shopDAO().getAmountOfTimesVisited(mImageNames.get(position));
-                Log.d(TAG,"Voordat er een winkel gekozen is deze zoveel keer opgezocht: "+visits);
+                int visits = db.shopDAO().getAmountOfTimesVisited(mImageNames.get(position));
+                Log.d(TAG, "Voordat er een winkel gekozen is deze zoveel keer opgezocht: " + visits);
 
-               // Toast.makeText(mContext, visits, Toast.LENGTH_SHORT).show(); // laat even zien waar je op klikte
-                db.shopDAO().update(visits+1,mImageNames.get(position));
-                Log.d(TAG,"Nadat er een winkel gekozen is: "+ db.shopDAO().getShopByName(mImageNames.get(position)).visitCounter);
+                // Toast.makeText(mContext, visits, Toast.LENGTH_SHORT).show(); // laat even zien waar je op klikte
+                db.shopDAO().update(visits + 1, mImageNames.get(position));
+                Log.d(TAG, "Nadat er een winkel gekozen is: " + db.shopDAO().getShopByName(mImageNames.get(position)).visitCounter);
 
                 myDialog.show();
             }
@@ -124,7 +124,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView ThursDay = myDialog.findViewById(R.id.ThursDayTextView);
         TextView Friday = myDialog.findViewById(R.id.FridayTextView);
         TextView Saturday = myDialog.findViewById(R.id.SaturDayTextView);
-        TextView Sunday =myDialog.findViewById(R.id.SunDayTextView);
+        TextView Sunday = myDialog.findViewById(R.id.SunDayTextView);
         Button websiteButton = myDialog.findViewById(R.id.websiteButton);
 
         storeName.setText(mImageNames.get(positionClicked));
@@ -155,32 +155,31 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
 
 
-
-        return  myDialog;
+        return myDialog;
     }
 
-    private void makePhoneCall(){
+    private void makePhoneCall() {
         String number = db.shopDAO().getAll().get(positionClicked).PhoneNumber;
-        if(number.trim().length()>0){
-                if(ContextCompat.checkSelfPermission(myDialog.getContext(),
-                        Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions( myDialog.getOwnerActivity(),new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
-                }else{
-                    String dial = "tel:" + number;
-                    mContext.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
-                }
-        }else{
+        if (number.trim().length() > 0) {
+            if (ContextCompat.checkSelfPermission(myDialog.getContext(),
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(myDialog.getOwnerActivity(), new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            } else {
+                String dial = "tel:" + number;
+                mContext.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+        } else {
 
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantresults) {
-        if(requestCode == REQUEST_CALL ){
-            if(grantresults.length> 0 && grantresults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == REQUEST_CALL) {
+            if (grantresults.length > 0 && grantresults[0] == PackageManager.PERMISSION_GRANTED) {
                 makePhoneCall();
-            }else{
-                Toast.makeText(this.mContext,"Permission DENIED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this.mContext, "Permission DENIED", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -190,13 +189,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mImageNames.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout store_popup;
         ImageView imageView;
         TextView imageName;
         TextView openHours;
         RelativeLayout parentLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.logoImage);
